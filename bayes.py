@@ -24,14 +24,18 @@ class Search():
     def __init__(self, name):
         self.name = name
         self.img = cv.imread(MAP_FILE, cv.IMREAD_COLOR)
+
+        # check the map file is present
         if self.img is None:
             print(f'Could not load map file {MAP_FILE}',
                   file=sys.stderr)
             sys.exit(1)
 
+        # When the sailor is found. area_actual = search are. sailor_actual = coordinates in the area
         self.area_actual = 0
         self.sailor_actual = [0, 0] # As "local" coordinates within search area
 
+        # Local coordinates within the search areas from 'y' to 'x' upper-left to lower-right
         self.sa1 = self.img[SA1_CORNERS[1] : SA1_CORNERS[3],
                             SA1_CORNERS[0] : SA1_CORNERS[2]]
 
@@ -41,10 +45,12 @@ class Search():
         self.sa3 = self.img[SA3_CORNERS[1] : SA3_CORNERS[3],
                             SA3_CORNERS[0] : SA3_CORNERS[2]]
 
+        # Probability of finding the sailor for each area
         self.p1 = 0.2
         self.p2 = 0.5
         self.p3 = 0.3
 
+        # SEP attributes
         self.sep1 = 0
         self.sep2 = 0
         self.sep3 = 0
