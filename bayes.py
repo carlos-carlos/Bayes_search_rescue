@@ -64,6 +64,7 @@ class Search():
         cv.putText(self.img, '50 Nautical Miles' , (71, 370),
             cv.FONT_HERSHEY_PLAIN, 1, (0, 0, 0))
 
+        # Draw a rectangle for the first search area
         cv.rectangle(self.img, (SA1_CORNERS[0], SA1_CORNERS[1]), (SA1_CORNERS[2], SA1_CORNERS[3]), (0, 0, 0), 1)
         cv.putText(self.img, '1', (SA1_CORNERS[0] + 3, SA1_CORNERS[1] + 15), cv.FONT_HERSHEY_PLAIN, 1, 0)
         cv.rectangle(self.img, (SA2_CORNERS[0], SA2_CORNERS[1]), (SA2_CORNERS[2], SA2_CORNERS[3]), (0, 0, 0), 1)
@@ -71,15 +72,17 @@ class Search():
         cv.rectangle(self.img, (SA3_CORNERS[0], SA3_CORNERS[1]), (SA3_CORNERS[2], SA3_CORNERS[3]), (0, 0, 0), 1)
         cv.putText(self.img, '3', (SA3_CORNERS[0] + 3, SA3_CORNERS[1] + 15), cv.FONT_HERSHEY_PLAIN, 1, 0)
 
-        #2
+        # Post a '+' at the sailor's last known position
         cv.putText(self.img, '+', (last_known), cv.FONT_HERSHEY_PLAIN, 1, (0, 0, 255))
+
+        # Text describing symbols for last known position and actual position if found.
         cv.putText(self.img, '+ = Last Known Position', (274, 355), cv.FONT_HERSHEY_PLAIN, 1, (0, 0, 255))
         cv.putText(self.img, '* = Actual Position', (275, 370), cv.FONT_HERSHEY_PLAIN, 1, (255, 0, 0))
 
-        #3
-        cv.imshow('Search Area', self.img)
-        cv.moveWindow('Search Area', 750, 10)
-        cv.waitKey(500)
+        # Show the map with Open CV
+        cv.imshow('Search Area', self.img)  # map title
+        cv.moveWindow('Search Area', 750, 10)  # display the map at the upper left of the monitor
+        cv.waitKey(500)  # delay while rendering images to window in milliseconds
 
 
 
