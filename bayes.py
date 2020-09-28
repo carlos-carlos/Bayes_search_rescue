@@ -124,18 +124,27 @@ class Search():
     def conduct_search(self, area_num, area_array, effectiveness_prob):
         """Return search results and list of searched coordinates."""
 
+        # Generate a list of all the coordinates within a given search area
         local_y_range = range(area_array.shape[0])
         local_x_range = range(area_array.shape[1])
 
+        # Generate the list of all coordinates in the search area, use the itertools
         coords = list(itertools.product(local_x_range, local_y_range))
+        # Shuffle the list of coordinates so you won’t keep searching the same
         random.shuffle(coords)
+        # Use index slicing to trim the list based on the search effectiveness probability.
         coords = coords[:int((len(coords) * effectiveness_prob))]
 
+        # Assign a local variable to hold the sailor’s actual location
         loc_actual = (self.sailor_actual[0], self.sailor_actual[1])
+
+        # Use a conditional to check that the sailor has been found
         if area_num == self.area_actual and loc_actual in coords:
             return f'Found in Area{area_num}', coords
         else:
             return 'Not Found', coords
+
+
 
 
 
