@@ -170,6 +170,16 @@ def draw_menu(search_num):
         """
     )
 
+def main():
+    '''Runs the program above'''
+    app = Search('Cape Python')
+    app.draw_map(last_known=(160, 290))
+    sailor_x, sailor_y = app.sailor_final_location(num_search_areas=3)
+    print('-' * 65)
+    print("\nInitial Target (p) Probabilities: ")
+    print(f"P1 = {app.p1:.3f}, P2 = {app.p2:.3f}, P3 = {app.p3:.3f}")
+    search_num = 1
+
 
 
 
