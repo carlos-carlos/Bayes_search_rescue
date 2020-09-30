@@ -260,8 +260,8 @@ def main():
             main()
         search_num += 1
 
-    if __name__ == '__main__':
-        main()
+if __name__ == '__main__':
+    main()
 
 
 
