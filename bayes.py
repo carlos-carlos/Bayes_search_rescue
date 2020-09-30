@@ -239,6 +239,32 @@ def main():
             continue
 
 
+        app.revise_target_probs() # Use Bayes' rule to update target probs.
+
+        print(f"\nSearch {search_num} Results 1 = {results_1}", file=sys.stderr)
+        print(f"\nSearch {search_num} Results 2 = {results_2}", file=sys.stderr)
+        print(f"Search {search_num} Effectiveness (E):")
+        print(f"E1 = {app.sep1:.3f}, E2 = {app.sep2:.3f}, E3 = {app.sep3:.3f}")
+
+        if results_1 == 'Not found' and results_2 == 'Not Found':
+            print(f"\nNew Target Probabilities (P) for Search {search_num + 1}:")
+            print(f"P1 = {app.p1:.3f}, P2 = {app.p2:.3f}, P3 = {app.p3:.3f}")
+
+        else:
+            cv.circle(app.img, (sailor_x, sailor_y), 3, (255, 0,0), -1)
+            cv.imshow('Search Area', app.img)
+            cv.waitKey(1500)
+            main()
+        search_num += 1
+
+    if __name__ == '__main__':
+        main()
+
+
+
+
+
+
 
 
 
