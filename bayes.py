@@ -182,17 +182,20 @@ def main():
     print(f"P1 = {app.p1:.3f}, P2 = {app.p2:.3f}, P3 = {app.p3:.3f}")
     search_num = 1 # Keeps track of the number of searches
 
+    # Loop runs until user chooses to exit
     while True:
-        app.calc_search_effectiveness()
-        draw_menu(search_num)
-        choice = input("Choice: ")
+        app.calc_search_effectiveness()  # Calculate search effectiveness
+        draw_menu(search_num)  # Displays menu and accepts the search number
+        choice = input("Choice: ") # Accept user input
 
         if choice == "0":
             sys.exit()
 
         elif choice == "1":
+            # Generate 2 sets of results and coordinates
             results_1, coords_1 = app.conduct_search(1, app.sa1, app.sep1)
             results_2, coords_2 = app.conduct_search(1, app.sa1, app.sep1)
+            # Add the two lists above toghether and remove duplicates, divide the pixels in the search area by the set
             app.sep1 = (len(set(coords_1 + coords_2))) / (len(app.sa1) ** 2)
             app.sep2 = 0
             app.sep3 = 0
@@ -211,6 +214,7 @@ def main():
             app.sep2 = 0
             app.sep3 = (len(set(coords_1 + coords_2))) / (len(app.sa3) ** 2)
 
+        #  divide teams between two areas. In this case, there’s no need to recalculate the SEP.
         elif choice == "4":
             results_1, coords_1 = app.conduct_search(1, app.sa1, app.sep1)
             results_2, coords_2 = app.conduct_search(2, app.sa2, app.sep2)
@@ -226,6 +230,7 @@ def main():
             results_2, coords_2 = app.conduct_search(3, app.sa3, app.sep3)
             app.sep1 = 0
 
+        # If the player finds the sailor and wants to play again or just wants to restart, call the main() function
         elif choice == "7":
             main()
 
